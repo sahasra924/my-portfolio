@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahasra Kommuri &mdash; Video Editor &middot; Food Content Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080809;--bg2:#0f0f11;--bg3:#161618;
+  --b:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.1);
+  --t:#F2F0EB;--t2:#A8A49C;--t3:#5A5753;
+  --ac:#FF5C1A;--ac2:#FF8C5A;--ad:rgba(255,92,26,0.1);
+  --gn:#3ECFB2;--gd:rgba(62,207,178,0.1);
+  --pu:#A78BFA;--pd:rgba(167,139,250,0.1);--go:#F5C842;
+  --fd:'Syne',sans-serif;--fb:'Inter',sans-serif;--fm:'DM Mono',monospace;
+  --r:12px;--rl:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t);font-family:var(--fb);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(8,8,9,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.nl{font-family:var(--fd);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;color:var(--t);text-decoration:none}
+.nl span{color:var(--ac)}
+.nlinks{display:flex;gap:2.5rem;list-style:none}
+.nlinks a{font-size:.78rem;font-weight:500;color:var(--t3);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nlinks a:hover{color:var(--t)}
+.ncta{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;padding:.55rem 1.4rem;background:var(--ac);color:#fff;border-radius:100px;text-decoration:none;transition:all .2s}
+.ncta:hover{background:var(--ac2);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 3rem 4.5rem;position:relative;overflow:hidden}
+.hg1{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 20%,rgba(255,92,26,.09) 0%,transparent 65%),radial-gradient(ellipse 50% 70% at 10% 80%,rgba(62,207,178,.05) 0%,transparent 65%);pointer-events:none}
+.heyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.75rem}
+.hstatus{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.7rem;color:var(--gn);letter-spacing:.08em;text-transform:uppercase;background:var(--gd);border:1px solid rgba(62,207,178,.2);padding:.3rem .8rem;border-radius:100px}
+.hstatus::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gn);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hloc{font-family:var(--fm);font-size:.7rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase}
+.hh{font-family:var(--fd);font-size:clamp(4rem,10vw,9.5rem);font-weight:800;line-height:.88;letter-spacing:-.04em;margin-bottom:2.5rem;color:var(--t)}
+.hh .acc{color:var(--ac)}
+.hbot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.hsub{max-width:430px;font-size:1.05rem;font-weight:300;color:var(--t2);line-height:1.75}
+.hsub strong{color:var(--t);font-weight:500}
+.hright{display:flex;flex-direction:column;align-items:flex-end;gap:1.5rem}
+.hstats{display:flex;gap:2.5rem}
+.stn{font-family:var(--fd);font-size:2.2rem;font-weight:800;line-height:1;letter-spacing:-.03em;text-align:right}
+.stn span{color:var(--ac)}
+.stl{font-family:var(--fm);font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem;text-align:right}
+.crow{display:flex;gap:.75rem;align-items:center}
+.bp{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;background:var(--ac);color:#fff;border-radius:100px;text-decoration:none;font-weight:600;font-size:.9rem;transition:all .2s}
+.bp:hover{background:var(--ac2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,92,26,.3)}
+.bg2b{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border:1px solid var(--b2);color:var(--t2);border-radius:100px;text-decoration:none;font-weight:500;font-size:.9rem;transition:all .2s}
+.bg2b:hover{border-color:var(--t2);color:var(--t)}
+
+/* MARQUEE */
+.mwrap{overflow:hidden;padding:1.1rem 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b);background:var(--bg2)}
+.minner{display:flex;width:max-content;animation:mscroll 30s linear infinite}
+.minner:hover{animation-play-state:paused}
+.mitem{display:flex;align-items:center;gap:2rem;padding:0 2rem;font-family:var(--fm);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);white-space:nowrap}
+.mdot{color:var(--ac);font-size:1rem}
+@keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:7rem 3rem}
+.ey{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.enum{font-family:var(--fm);font-size:.65rem;color:var(--ac);letter-spacing:.12em;text-transform:uppercase}
+.eline{width:2rem;height:1px;background:var(--b2)}
+.elbl{font-family:var(--fm);font-size:.65rem;color:var(--t3);letter-spacing:.12em;text-transform:uppercase}
+.sh{font-family:var(--fd);font-size:clamp(2.2rem,4.5vw,4rem);font-weight:800;line-height:1.0;letter-spacing:-.03em;margin-bottom:.5rem}
+.sh em{font-style:italic;color:var(--ac)}
+.ss{font-size:1rem;color:var(--t2);font-weight:300;line-height:1.7;margin-bottom:3.5rem;max-width:500px}
+
+/* SHOWREEL */
+#showreel{background:var(--bg);padding-top:5rem}
+.rlayout{display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:start}
+.rinfo{position:sticky;top:6rem}
+.rinfo h3{font-family:var(--fd);font-size:1.3rem;font-weight:700;margin-bottom:.6rem;line-height:1.2}
+.rinfo p{font-size:.875rem;color:var(--t2);line-height:1.7;font-weight:300;margin-bottom:1.5rem}
+.rtag{display:inline-block;font-family:var(--fm);font-size:.62rem;padding:.25rem .65rem;border-radius:100px;margin:.2rem;letter-spacing:.05em;text-transform:uppercase;background:var(--ad);color:var(--ac)}
+
+/* Hero featured video — plays on hover */
+.rfeat{position:relative;border-radius:var(--rl);overflow:hidden;background:var(--bg3);border:1px solid var(--b);box-shadow:0 40px 80px rgba(0,0,0,.5);display:block;cursor:pointer;aspect-ratio:9/16;max-height:600px}
+.rfeat video{width:100%;height:100%;object-fit:cover;display:block}
+.rfeat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,rgba(0,0,0,.05) 50%,transparent 100%);display:flex;align-items:center;justify-content:center;transition:opacity .3s}
+.rfeat.playing .rfeat-overlay{opacity:0}
+.rfeat-play{width:72px;height:72px;border-radius:50%;background:rgba(255,92,26,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 30px rgba(255,92,26,.4);transition:transform .25s}
+.rfeat:hover .rfeat-play{transform:scale(1.08)}
+.rfeat-play svg{width:28px;height:28px;fill:white;margin-left:4px}
+.rfeat-label{position:absolute;bottom:1.25rem;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.65rem;color:rgba(255,255,255,.55);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;transition:opacity .3s}
+.rfeat.playing .rfeat-label{opacity:0}
+
+/* VIDEO GRID */
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:2rem}
+
+/* Video card — hover to play */
+.vcard{cursor:pointer;position:relative;border-radius:var(--r);overflow:hidden;background:var(--bg3);border:1px solid var(--b);cursor:pointer;text-decoration:none;display:block;transition:transform .25s,box-shadow .25s,border-color .25s;aspect-ratio:9/16}
+.vcard:hover{transform:translateY(-5px);box-shadow:0 24px 55px rgba(0,0,0,.6);border-color:var(--b2)}
+.vcard video,.vcard img.vthumb{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.vcard img.vthumb{z-index:1;transition:opacity .3s}
+.vcard video{z-index:2;opacity:0;transition:opacity .3s}
+.vcard.playing video{opacity:1}
+.vcard.playing img.vthumb{opacity:0}
+.vov{position:absolute;inset:0;z-index:3;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.05) 45%,transparent 100%);opacity:0;transition:opacity .25s;display:flex;flex-direction:column;justify-content:flex-end;padding:.9rem}
+.vcard:hover .vov{opacity:1}
+.vplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;width:40px;height:40px;background:rgba(255,92,26,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s}
+.vcard:hover .vplay{opacity:1}
+.vcard.playing .vplay{opacity:0}
+.vplay svg{width:14px;height:14px;fill:white;margin-left:2px}
+.vtitle{font-size:.75rem;font-weight:500;line-height:1.3;color:#fff;margin-bottom:.2rem}
+.vmeta{font-family:var(--fm);font-size:.58rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em}
+.ig-placeholder{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.ig-placeholder span{font-family:var(--fm);font-size:.6rem;color:rgba(255,255,255,.55);letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:0 .5rem}
+.ig-card video{z-index:2}
+.ig-card.playing .ig-placeholder{opacity:0}
+.vbadge{position:absolute;top:.6rem;left:.6rem;z-index:5;font-family:var(--fm);font-size:.55rem;padding:.2rem .5rem;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;backdrop-filter:blur(8px)}
+.vb-yt{background:rgba(255,0,0,.2);color:#ff5555;border:1px solid rgba(255,0,0,.2)}
+.vb-ig{background:rgba(225,48,108,.2);color:#E1306C;border:1px solid rgba(225,48,108,.2)}
+
+/* Row label */
+.grid-label{font-family:var(--fm);font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem}
+.grid-label::after{content:'';flex:1;height:1px;background:var(--b)}
+
+/* CHANNELS — 4 col single row */
+#channels{background:var(--bg2)}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--b);border-radius:var(--rl);overflow:hidden;background:var(--b);margin-top:3rem}
+.ccard{background:var(--bg);padding:2rem;text-decoration:none;color:var(--t);display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background .2s}
+.ccard:hover{background:var(--bg2)}
+.cacc{position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.ccard:hover .cacc{transform:scaleX(1)}
+.ac-yt{background:#FF0000}.ac-ig{background:linear-gradient(90deg,#F77737,#E1306C,#833AB4)}
+.ac-ai{background:linear-gradient(90deg,var(--go),var(--pu))}.ac-lf{background:var(--gn)}
+.cplat{display:flex;align-items:center;gap:.55rem;margin-bottom:1.25rem}
+.picon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.picon svg{width:18px;height:18px}
+.pi-yt{background:rgba(255,0,0,.12)}.pi-ig{background:rgba(225,48,108,.12)}
+.pi-ai{background:rgba(167,139,250,.12)}.pi-lf{background:rgba(62,207,178,.12)}
+.pmeta{display:flex;flex-direction:column;gap:.1rem}
+.pname{font-family:var(--fm);font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em}
+.phandle{font-size:.78rem;font-weight:500;color:var(--t)}
+.ctitle{font-family:var(--fd);font-size:1.3rem;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.6rem}
+.cdesc{font-size:.82rem;color:var(--t2);line-height:1.65;font-weight:300;flex:1;margin-bottom:1.5rem}
+.cstats{display:flex;flex-wrap:wrap;gap:1.25rem;padding-top:1.25rem;border-top:1px solid var(--b)}
+.csv{font-family:var(--fd);font-size:1.3rem;font-weight:700;letter-spacing:-.02em;color:var(--t)}
+.csl{font-family:var(--fm);font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:.1rem}
+.carr{font-size:1.2rem;color:var(--t3);transition:color .2s,transform .2s;text-decoration:none}
+.ccard:hover .carr{color:var(--ac);transform:translate(3px,-3px)}
+.cbadge{display:inline-flex;align-items:center;font-family:var(--fm);font-size:.58rem;padding:.22rem .6rem;border-radius:100px;letter-spacing:.05em;text-transform:uppercase;margin-right:.35rem;margin-bottom:.6rem}
+.cb-flag{background:var(--ad);color:var(--ac);border:1px solid rgba(255,92,26,.2)}
+.cb-top{background:rgba(245,200,66,.1);color:var(--go);border:1px solid rgba(245,200,66,.2)}
+.cb-ai{background:var(--pd);color:var(--pu);border:1px solid rgba(167,139,250,.2)}
+
+/* SKILLS */
+#skills{background:var(--bg)}
+.sklayout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;margin-top:3rem}
+.sktitle{font-family:var(--fm);font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem}
+.skrow{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;border-bottom:1px solid var(--b);gap:1rem}
+.skl{flex:1}
+.skname{font-size:.88rem;font-weight:500;color:var(--t);margin-bottom:.12rem}
+.sktool{font-family:var(--fm);font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
+.skr{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.skbar{width:72px;height:1.5px;background:var(--b2);border-radius:2px;overflow:hidden}
+.skfill{height:100%;background:var(--ac);border-radius:2px}
+.skpct{font-family:var(--fm);font-size:.62rem;color:var(--ac);min-width:24px;text-align:right}
+.trow{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.75rem}
+.tchip{font-family:var(--fm);font-size:.66rem;padding:.38rem .8rem;border:1px solid var(--b);border-radius:100px;color:var(--t2);letter-spacing:.04em;white-space:nowrap;transition:all .2s}
+.tchip:hover{border-color:var(--ac);color:var(--ac)}
+.ocards{display:flex;flex-direction:column;gap:.65rem;margin-top:.75rem}
+.ocard{background:var(--bg2);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.15rem;display:flex;align-items:flex-start;gap:.7rem}
+.oicon{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+.otitle{font-size:.83rem;font-weight:500;margin-bottom:.12rem}
+.odesc{font-size:.76rem;color:var(--t2);font-weight:300;line-height:1.55}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3rem}
+.atxt{font-size:1rem;color:var(--t2);line-height:1.85;font-weight:300}
+.atxt strong{color:var(--t);font-weight:500}
+.atxt .hl{color:var(--ac);font-weight:500}
+.atxt p+p{margin-top:1.25rem}
+.icards{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.icard{background:var(--bg3);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem}
+.iclbl{font-family:var(--fm);font-size:.58rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+.icval{font-size:.88rem;font-weight:500;color:var(--t)}
+.icard.open .icval{color:var(--gn)}
+.prow{margin-top:1.75rem;background:var(--bg3);border:1px solid var(--b);border-radius:var(--r);padding:1.4rem}
+.plbl{font-family:var(--fm);font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.9rem}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr)}
+.pstat{text-align:center;padding:.4rem}
+.pstat+.pstat{border-left:1px solid var(--b)}
+.pval{font-family:var(--fd);font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+.pval .ac{color:var(--ac)}
+.plb{font-family:var(--fm);font-size:.56rem;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:.15rem}
+
+/* CONTACT */
+#contact{background:var(--bg);padding-bottom:8rem}
+.cinner{max-width:700px;margin:0 auto;text-align:center}
+.cbig{font-family:var(--fd);font-size:clamp(3rem,7vw,6.5rem);font-weight:800;letter-spacing:-.04em;line-height:.9;margin-bottom:1.5rem}
+.cbig em{font-style:italic;color:var(--ac)}
+.csub{font-size:1rem;color:var(--t2);margin-bottom:3rem;font-weight:300;line-height:1.7}
+.clinks{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:2.5rem}
+.clink{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.3rem;border:1px solid var(--b2);border-radius:100px;color:var(--t2);text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s}
+.clink:hover{border-color:var(--ac);color:var(--ac);background:var(--ad)}
+.clink svg{width:15px;height:15px;flex-shrink:0}
+.cprimary{display:inline-flex;align-items:center;gap:.6rem;padding:1.1rem 3rem;background:var(--ac);color:#fff;border-radius:100px;font-weight:600;font-size:1rem;text-decoration:none;transition:all .25s}
+.cprimary:hover{background:var(--ac2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(255,92,26,.35)}
+
+/* FOOTER */
+footer{padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--b)}
+footer p{font-size:.75rem;color:var(--t3)}
+.flinks{display:flex;gap:1.5rem}
+.flinks a{font-size:.75rem;color:var(--t3);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--ac)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.cgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nlinks{display:none}
+  .hero{padding:7rem 1.5rem 3.5rem}
+  section{padding:5rem 1.5rem}
+  .hh{font-size:clamp(3rem,12vw,6rem)}
+  .vgrid{grid-template-columns:repeat(2,1fr)}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .sklayout{grid-template-columns:1fr;gap:3rem}
+  .agrid{grid-template-columns:1fr;gap:3rem}
+  .hstats{gap:1.5rem}
+  footer{flex-direction:column;gap:.75rem;text-align:center}
+  .rlayout{grid-template-columns:1fr}.rinfo{position:static}
+}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr}.vgrid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nl">SK<span>.</span></a>
+  <ul class="nlinks">
+    <li><a href="#showreel">Work</a></li>
+    <li><a href="#channels">Channels</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="ncta">&#10022; Hire Me</a>
+</nav>
+
+<section class="hero">
+  <div class="hg1"></div>
+  <div class="heyebrow">
+    <span class="hstatus">Available for freelance</span>
+    <span class="hloc">&#128205; Guntur, AP &middot; India</span>
+  </div>
+  <h1 class="hh">I turn<br>raw footage<br>into <span class="acc">cravings.</span></h1>
+  <div class="hbot">
+    <p class="hsub"><strong>300+ short-form edits.</strong> Food, music, lifestyle, AI creative. I edit content that makes people stop scrolling &mdash; and come back for more.</p>
+    <div class="hright">
+      <div class="hstats">
+        <div><div class="stn">230<span>+</span></div><div class="stl">Videos edited</div></div>
+        <div><div class="stn">236K<span>+</span></div><div class="stl">Total views</div></div>
+        <div><div class="stn">4</div><div class="stl">Channels</div></div>
+      </div>
+      <div class="crow">
+        <a href="#showreel" class="bp">&#9654; Watch My Work</a>
+        <a href="#contact" class="bg2b">Let&rsquo;s Talk &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mwrap"><div class="minner">
+  <span class="mitem">Short-Form Editing <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Food Reels <span class="mdot">&#10022;</span></span>
+  <span class="mitem">YouTube Shorts <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Hook-First Strategy <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Beat-Sync Cuts <span class="mdot">&#10022;</span></span>
+  <span class="mitem">AI Brand Visuals <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Motion Graphics <span class="mdot">&#10022;</span></span>
+  <span class="mitem">236K+ Views <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Short-Form Editing <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Food Reels <span class="mdot">&#10022;</span></span>
+  <span class="mitem">YouTube Shorts <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Hook-First Strategy <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Beat-Sync Cuts <span class="mdot">&#10022;</span></span>
+  <span class="mitem">AI Brand Visuals <span class="mdot">&#10022;</span></span>
+  <span class="mitem">Motion Graphics <span class="mdot">&#10022;</span></span>
+  <span class="mitem">236K+ Views <span class="mdot">&#10022;</span></span>
+</div></div>
+
+<!-- SECTION 1 -->
+<section id="showreel">
+  <div class="ey"><span class="enum">01</span><span class="eline"></span><span class="elbl">Featured Work</span></div>
+  <h2 class="sh">The edits that made<br><em>people hungry.</em></h2>
+  <p class="ss">Hover any card to watch the actual edit. Click to open on YouTube or Instagram.</p>
+
+  <!-- Hero video -->
+  <div class="rlayout reveal">
+    <div class="rinfo">
+      <span class="cbadge cb-flag">&#9733; Best Edit</span>
+      <h3>Don&rsquo;t Blink &mdash; Matcha Mango Latte</h3>
+      <p>Chaotic fast cuts. Colour-popping food visuals. A hook that lands in the first half-second. This is what scroll-stopping food editing looks like when it&rsquo;s actually working.</p>
+      <span class="rtag">Food</span>
+      <span class="rtag">Caf&eacute; Drink</span>
+      <span class="rtag">Fast Cut</span>
+      <div style="margin-top:1.5rem">
+        <a href="https://youtube.com/@craveyum" target="_blank" class="bg2b" style="font-size:.8rem;padding:.6rem 1.2rem">View CraveYum &rarr;</a>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/shorts/naGn8yDJQj0" target="_blank" class="rfeat" id="hero-vid">
+      <img src="https://i.ytimg.com/vi/naGn8yDJQj0/maxresdefault.jpg" alt="Matcha Mango Latte" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block">
+      <div class="rfeat-overlay">
+        <div class="rfeat-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="rfeat-label">Watch on YouTube</div>
+    </a>
+  </div>
+
+  <!-- CraveYum food grid — 4 videos with hover-to-play -->
+  <div style="margin-top:3.5rem" class="reveal">
+    <div class="grid-label">CraveYum &middot; Food Shorts &middot; Hover to play</div>
+    <div class="vgrid">
+
+      <div data-href="https://www.youtube.com/shorts/hPUhzR6O_38" target="_blank" class="vcard" data-src="videos/caramel.mp4">
+        <img class="vthumb" src="https://i.ytimg.com/vi/hPUhzR6O_38/maxres2.jpg" alt="Caramel Sauce" loading="lazy">
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-yt">YT Short</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Silky Caramel Sauce &#127855;</div><div class="vmeta">Dessert &middot; 0:20</div></div>
+      </div>
+
+      <div data-href="https://www.youtube.com/shorts/rpadFuTZc9k" target="_blank" class="vcard" data-src="videos/cheesecake_latte.mp4">
+        <img class="vthumb" src="https://i.ytimg.com/vi/rpadFuTZc9k/maxresdefault.jpg" alt="Iced Cheesecake Latte" loading="lazy">
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-yt">YT Short</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Iced Cheesecake Latte &#9749;</div><div class="vmeta">Caf&eacute; &middot; 0:26</div></div>
+      </div>
+
+      <div data-href="https://www.youtube.com/shorts/7KeqbHb0d_4" target="_blank" class="vcard" data-src="videos/brownies.mp4">
+        <img class="vthumb" src="https://i.ytimg.com/vi/7KeqbHb0d_4/maxresdefault.jpg" alt="Eggless Brownies" loading="lazy">
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-yt">YT Short</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Fudgy Eggless Brownies &#129514;</div><div class="vmeta">Baking &middot; 0:40</div></div>
+      </div>
+
+      <div data-href="https://www.youtube.com/shorts/NOIXQoVsjLA" target="_blank" class="vcard" data-src="videos/iced_latte.mp4">
+        <img class="vthumb" src="https://i.ytimg.com/vi/NOIXQoVsjLA/maxresdefault.jpg" alt="Iced Latte" loading="lazy">
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-yt">YT Short</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Made This Iced Latte For Him &#9749;</div><div class="vmeta">Caf&eacute; &middot; Coffee</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scouting Tunes row -->
+  <div style="margin-top:2.5rem" class="reveal">
+    <div class="grid-label">Scouting Tunes &middot; Instagram Reels &middot; Beat-Sync Edits &middot; Hover to play</div>
+    <div class="vgrid">
+
+      <div class="vcard ig-card" data-src="videos/titli.mp4" data-href="https://www.instagram.com/p/DGDq1W6C-ib/" style="background:linear-gradient(135deg,#1a0533,#833AB4,#E1306C)">
+        <div class="ig-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(255,255,255,0.6)" stroke="none"/></svg><span>Titli &middot; Valentines Edit</span></div>
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-ig">IG Reel</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Titli &mdash; Valentines Edit &#128149;</div><div class="vmeta">Beat-Sync &middot; Scouting Tunes</div></div>
+      </div>
+
+      <div class="vcard ig-card" data-src="videos/dooron.mp4" data-href="https://www.instagram.com/p/DFsl0w5zQxB/" style="background:linear-gradient(135deg,#0a1628,#1e3a5f,#E1306C)">
+        <div class="ig-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(255,255,255,0.6)" stroke="none"/></svg><span>Dooron Dooron &middot; My Edit</span></div>
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-ig">IG Reel</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Dooron Dooron &mdash; My Edit &#127925;</div><div class="vmeta">Beat-Sync &middot; Scouting Tunes</div></div>
+      </div>
+
+      <div class="vcard ig-card" data-src="videos/jhol.mp4" data-href="https://www.instagram.com/p/DG3HhTjz-0j/" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)">
+        <div class="ig-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(255,255,255,0.6)" stroke="none"/></svg><span>Jhol &middot; Acoustic Version</span></div>
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-ig">IG Reel</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Jhol Acoustic Version &#127925;</div><div class="vmeta">Beat-Sync &middot; Scouting Tunes</div></div>
+      </div>
+
+      <div class="vcard ig-card" data-src="videos/saudebazi.mp4" data-href="https://www.instagram.com/p/DTmjQdbjleF/" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#833AB4)">
+        <div class="ig-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="rgba(255,255,255,0.6)" stroke="none"/></svg><span>Saudebazi &middot; Send to Loved Ones</span></div>
+        <video muted loop playsinline preload="none"></video>
+        <span class="vbadge vb-ig">IG Reel</span>
+        <div class="vplay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="vov"><div class="vtitle">Saudebazi &mdash; Send to Loved Ones &#10084;</div><div class="vmeta">Beat-Sync &middot; Scouting Tunes</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:2rem">
+    <a href="https://drive.google.com/drive/folders/1AryTVMFzu9Ey1qE3cNkLTIchkqdEtgwU?usp=drive_link" target="_blank" class="bg2b">View Full Portfolio on Drive &rarr;</a>
+  </div>
+</section>
+
+<!-- SECTION 2: CHANNELS -->
+<section id="channels">
+  <div class="ey"><span class="enum">02</span><span class="eline"></span><span class="elbl">My Channels</span></div>
+  <h2 class="sh">Four channels.<br><em>One vision.</em></h2>
+  <p class="ss">I don&rsquo;t just edit for clients &mdash; I run my own content operation. Every channel is proof of work.</p>
+  <div class="cgrid reveal">
+
+    <div class="ccard">
+      <div class="cacc ac-yt"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="cplat">
+          <div class="picon pi-yt"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8z"/><polygon points="9.7,15.5 15.8,12 9.7,8.5" fill="white"/></svg></div>
+          <div class="pmeta"><span class="pname">YouTube &middot; Instagram</span><span class="phandle">@CraveYum</span></div>
+        </div>
+        <a href="https://youtube.com/@craveyum" target="_blank" class="carr">&#8599;</a>
+      </div>
+      <span class="cbadge cb-flag">&#9733; Flagship</span>
+      <div class="ctitle">CraveYum</div>
+      <p class="cdesc">My main food channel built from zero. Hook-first edits that make you hungry in 60 seconds. 230 videos, 236K+ total views.</p>
+      <div class="cstats">
+        <div><div class="csv">230</div><div class="csl">Videos</div></div>
+        <div><div class="csv">236K+</div><div class="csl">Views</div></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="cacc ac-ig"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="cplat">
+          <div class="picon pi-ig"><svg viewBox="0 0 24 24"><defs><linearGradient id="ig1" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#F77737"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="url(#ig1)" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="url(#ig1)" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="#E1306C"/></svg></div>
+          <div class="pmeta"><span class="pname">Instagram</span><span class="phandle">@scoutingtunes</span></div>
+        </div>
+        <a href="https://www.instagram.com/scoutingtunes/" target="_blank" class="carr">&#8599;</a>
+      </div>
+      <div class="ctitle">Scouting Tunes</div>
+      <p class="cdesc">Music discovery through beat-driven Reels. Every cut lands on the beat &mdash; no exceptions. Proves I work in any niche.</p>
+      <div class="cstats">
+        <div><div class="csv">56</div><div class="csl">Reels</div></div>
+        <div><div class="csv">Beat-sync</div><div class="csl">Specialty</div></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="cacc ac-ai"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="cplat">
+          <div class="picon pi-ai"><svg viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.5"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>
+          <div class="pmeta"><span class="pname">Instagram &middot; AI Studio</span><span class="phandle">@thesaaz.studio</span></div>
+        </div>
+        <a href="https://www.instagram.com/thesaaz.studio/" target="_blank" class="carr">&#8599;</a>
+      </div>
+      <span class="cbadge cb-ai">AI-Powered</span>
+      <div class="ctitle">thesaaz.studio</div>
+      <p class="cdesc">AI creative studio for brands needing studio-quality product visuals &mdash; zero photoshoot cost. AI imagery + motion + brand storytelling.</p>
+      <div class="cstats">
+        <div><div class="csv">9+</div><div class="csl">Brand videos</div></div>
+        <div><div class="csv">AI</div><div class="csl">No shoot needed</div></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="cacc ac-lf"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div class="cplat">
+          <div class="picon pi-lf"><svg viewBox="0 0 24 24" fill="#3ECFB2"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8z"/><polygon points="9.7,15.5 15.8,12 9.7,8.5" fill="white"/></svg></div>
+          <div class="pmeta"><span class="pname">YouTube &middot; Lifestyle</span><span class="phandle">@yumiandcravi</span></div>
+        </div>
+        <a href="https://youtube.com/@yumiandcravi" target="_blank" class="carr">&#8599;</a>
+      </div>
+      <div class="ctitle">Yumi &amp; Cravi</div>
+      <p class="cdesc">Long-form lifestyle vlogging with warmth and storytelling that holds attention past 30 seconds. Proof I do both short and long-form.</p>
+      <div class="cstats">
+        <div><div class="csv">8</div><div class="csl">Long-form</div></div>
+        <div><div class="csv">Vlog</div><div class="csl">Style</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 3: SKILLS -->
+<section id="skills">
+  <div class="ey"><span class="enum">03</span><span class="eline"></span><span class="elbl">Skills &amp; Services</span></div>
+  <h2 class="sh">What I bring to<br><em>every project.</em></h2>
+  <p class="ss">Not just editing. A full content strategy that makes your videos actually perform.</p>
+  <div class="sklayout reveal">
+    <div>
+      <div class="sktitle">Core Skills</div>
+      <div class="skrow"><div class="skl"><div class="skname">Short-form video editing</div><div class="sktool">CapCut &middot; Primary</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:95%"></div></div><div class="skpct">95</div></div></div>
+      <div class="skrow"><div class="skl"><div class="skname">Hook-first Reels strategy</div><div class="sktool">Instagram &middot; YouTube Shorts</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:90%"></div></div><div class="skpct">90</div></div></div>
+      <div class="skrow"><div class="skl"><div class="skname">Beat-sync editing</div><div class="sktool">Music-driven content</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:88%"></div></div><div class="skpct">88</div></div></div>
+      <div class="skrow"><div class="skl"><div class="skname">Food &amp; product colour grading</div><div class="sktool">Visual storytelling</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:87%"></div></div><div class="skpct">87</div></div></div>
+      <div class="skrow"><div class="skl"><div class="skname">Graphic design &amp; thumbnails</div><div class="sktool">Canva</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:85%"></div></div><div class="skpct">85</div></div></div>
+      <div class="skrow"><div class="skl"><div class="skname">AI creative &amp; brand visuals</div><div class="sktool">thesaaz.studio</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:82%"></div></div><div class="skpct">82</div></div></div>
+      <div class="skrow"><div class="skl"><div class="skname">Long-form storytelling</div><div class="sktool">YouTube vlogs</div></div><div class="skr"><div class="skbar"><div class="skfill" style="width:78%"></div></div><div class="skpct">78</div></div></div>
+      <div style="margin-top:1.75rem">
+        <div class="sktitle">Tools</div>
+        <div class="trow">
+          <span class="tchip">CapCut</span><span class="tchip">Canva</span><span class="tchip">AI Image Gen</span>
+          <span class="tchip">Motion Graphics</span><span class="tchip">Colour Grading</span>
+          <span class="tchip">Caption Strategy</span><span class="tchip">Thumbnail Design</span>
+          <span class="tchip">Beat Sync</span><span class="tchip">Hook Writing</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="sktitle">What You Get When You Hire Me</div>
+      <div class="ocards">
+        <div class="ocard"><span class="oicon">&#9889;</span><div><div class="otitle">24&ndash;48hr turnaround</div><div class="odesc">Fast delivery, no chasing. Your Reel is ready before the trend dies.</div></div></div>
+        <div class="ocard"><span class="oicon">&#127919;</span><div><div class="otitle">Hook-first editing</div><div class="odesc">I obsess over the first 2 seconds. That&rsquo;s what stops the scroll.</div></div></div>
+        <div class="ocard"><span class="oicon">&#127869;</span><div><div class="otitle">Food content specialist</div><div class="odesc">230+ food edits. I know what shots make people crave, tap, and order.</div></div></div>
+        <div class="ocard"><span class="oicon">&#129302;</span><div><div class="otitle">AI product visuals</div><div class="odesc">Studio-quality visuals via thesaaz.studio &mdash; no photoshoot needed.</div></div></div>
+        <div class="ocard"><span class="oicon">&#128230;</span><div><div class="otitle">Ready-to-post delivery</div><div class="odesc">Correct ratio, captions, hashtags. Everything. You just hit post.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ABOUT -->
+<section id="about">
+  <div class="ey"><span class="enum">04</span><span class="eline"></span><span class="elbl">About Me</span></div>
+  <div class="agrid reveal">
+    <div>
+      <h2 class="sh" style="margin-bottom:1.75rem">I&rsquo;m not just<br>an editor.<br><em>I&rsquo;m a creator.</em></h2>
+      <div class="atxt">
+        <p>I&rsquo;m <strong>Sahasra Kommuri</strong> &mdash; a video editor and content creator from Guntur, AP. I built <strong>CraveYum</strong> from scratch: concept, filming, editing, growth. All of it. So when I edit your videos, I&rsquo;m not guessing what works &mdash; I&rsquo;ve lived it.</p>
+        <p>Across <span class="hl">four channels and 300+ edits</span>, I&rsquo;ve worked in food, music, lifestyle, and AI creative. I know what hook stops the scroll. I know what cut keeps people watching. I know what caption makes them save.</p>
+        <p>I&rsquo;m <span class="hl">open to any niche</span> &mdash; food, lifestyle, fashion, fitness, business, music, travel. If you have a story worth telling, I&rsquo;ll make sure people actually watch it.</p>
+        <p>You make the product. <span class="hl">I make people crave it.</span></p>
+      </div>
+      <div class="prow">
+        <div class="plbl">CraveYum &middot; Channel stats</div>
+        <div class="pstats">
+          <div class="pstat"><div class="pval">230<span class="ac">+</span></div><div class="plb">Videos</div></div>
+          <div class="pstat"><div class="pval">236K<span class="ac">+</span></div><div class="plb">Total views</div></div>
+          <div class="pstat"><div class="pval">129</div><div class="plb">Subscribers</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="icards">
+        <div class="icard"><div class="iclbl">Name</div><div class="icval">Sahasra Kommuri</div></div>
+        <div class="icard open"><div class="iclbl">Status</div><div class="icval">&#10022; Open to freelance</div></div>
+        <div class="icard"><div class="iclbl">Based in</div><div class="icval">Guntur, AP, India</div></div>
+        <div class="icard"><div class="iclbl">Works with</div><div class="icval">Worldwide &middot; Remote</div></div>
+        <div class="icard" style="grid-column:span 2"><div class="iclbl">Open to any niche</div><div class="icval">Food &middot; Music &middot; Lifestyle &middot; Fashion &middot; Fitness &middot; Business &middot; Travel</div></div>
+        <div class="icard"><div class="iclbl">Turnaround</div><div class="icval">24&ndash;48 hours</div></div>
+        <div class="icard"><div class="iclbl">Since</div><div class="icval">May 2025</div></div>
+        <div class="icard" style="grid-column:span 2"><div class="iclbl">Email</div><div class="icval">sahasra8243@gmail.com</div></div>
+        <div class="icard" style="grid-column:span 2"><div class="iclbl">WhatsApp</div><div class="icval">+91 93985 58853</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cinner reveal">
+    <div class="ey" style="justify-content:center;margin-bottom:1.75rem"><span class="enum">05</span><span class="eline"></span><span class="elbl">Let&rsquo;s Work Together</span></div>
+    <h2 class="cbig">Got content<br>that needs to<br><em>hit harder?</em></h2>
+    <p class="csub">Open to freelance video editing, AI brand visuals, and content collaborations. Any niche, any style &mdash; if it needs to stop the scroll, I can edit it.</p>
+    <div class="clinks">
+      <a href="mailto:sahasra8243@gmail.com" class="clink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>sahasra8243@gmail.com</a>
+      <a href="tel:+919398558853" class="clink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7 12.8 12.8 0 00.7 2.8 2 2 0 01-.4 2.1L8 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5 12.8 12.8 0 002.8.7 2 2 0 011.8 2.1z"/></svg>+91 93985 58853</a>
+      <a href="https://youtube.com/@craveyum" target="_blank" class="clink"><svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8z"/><polygon points="9.7,15.5 15.8,12 9.7,8.5" fill="white"/></svg>CraveYum</a>
+      <a href="https://www.instagram.com/thesaaz.studio/" target="_blank" class="clink"><svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="#E1306C" stroke="none"/></svg>thesaaz.studio</a>
+      <a href="https://drive.google.com/drive/folders/1AryTVMFzu9Ey1qE3cNkLTIchkqdEtgwU" target="_blank" class="clink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>Full Portfolio Drive</a>
+    </div>
+    <a href="mailto:sahasra8243@gmail.com" class="cprimary">&#9993; Email Me &mdash; Let&rsquo;s Talk</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 &middot; Sahasra Kommuri &middot; Guntur, India</p>
+  <div class="flinks">
+    <a href="https://youtube.com/@craveyum" target="_blank">CraveYum</a>
+    <a href="https://www.instagram.com/scoutingtunes/" target="_blank">Scouting Tunes</a>
+    <a href="https://www.instagram.com/thesaaz.studio/" target="_blank">thesaaz.studio</a>
+    <a href="https://youtube.com/@yumiandcravi" target="_blank">Yumi &amp; Cravi</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(r => io.observe(r));
+
+// Hover-to-play — Chrome + Firefox + Safari compatible
+document.querySelectorAll('.vcard[data-src]').forEach(card => {
+  const video = card.querySelector('video');
+  const src = card.getAttribute('data-src');
+  const igHref = card.getAttribute('data-href'); // for ig-cards (div, not <a>)
+  let loaded = false;
+  let hovered = false;
+
+  // Required for Firefox — set as JS properties, not just HTML attributes
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+
+  function tryPlay() {
+    const promise = video.play();
+    if (promise !== undefined) {
+      promise.then(() => {
+        if (hovered) card.classList.add('playing');
+      }).catch(() => {
+        card.classList.remove('playing');
+      });
+    } else {
+      if (hovered) card.classList.add('playing');
+    }
+  }
+
+  card.addEventListener('mouseenter', () => {
+    hovered = true;
+    if (!loaded) {
+      video.src = src;
+      video.load();
+      loaded = true;
+      video.addEventListener('canplay', () => {
+        if (hovered) tryPlay();
+      }, { once: true });
+    } else {
+      tryPlay();
+    }
+  });
+
+  card.addEventListener('mouseleave', () => {
+    hovered = false;
+    video.pause();
+    video.currentTime = 0;
+    card.classList.remove('playing');
+  });
+
+  // For ig-card divs: clicking opens Instagram link in new tab
+  if (igHref) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      window.open(igHref, '_blank');
+    });
+  }
+});
+</script>
+</body>
+</html>
